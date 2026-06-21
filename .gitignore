@@ -1,0 +1,64 @@
+# ── Python ──────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# ── Virtual / conda environments ─────────────────────────────────
+.venv/
+venv/
+ENV/
+env/
+
+# ── Jupyter ──────────────────────────────────────────────────────
+.ipynb_checkpoints/
+profile_default/
+
+# JupyterLab が自動生成するプロジェクト DB
+anaconda_projects/
+
+# ── ML / 学習出力 ───────────────────────────────────────────────
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+wandb/
+lightning_logs/
+runs/
+tensorboard/
+mlruns/
+outputs/
+
+# ── ログ・キャッシュ ─────────────────────────────────────────────
+*.log
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ── OS / エディタ ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# 一時ファイル
+*.tmp
+_kernel_test.py
+
+# 外部参考リポジトリ（ローカルに clone して使う。README に出典を明記）
+ng-video-lecture-master/

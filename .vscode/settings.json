@@ -1,0 +1,113 @@
+{
+    // ================================================================
+    //  VSCode ML / GPU 開発環境設定
+    //  対象: NVIDIA RTX/GTX + PyTorch 2.4 + TensorFlow 2.16 + conda
+    // ================================================================
+  
+    // ── Python インタープリター ─────────────────────────────────────
+    // 作業するプロジェクトに合わせて切り替える（Ctrl+Shift+P → "Python: Select Interpreter"）
+    // ここでは pytorch-gpu 環境をデフォルトに設定（パスは環境に合わせて変更）
+    "python.defaultInterpreterPath": "C:\\Users\\dorag\\anaconda3\\envs\\ForML\\python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python.condaPath": "C:\\Users\\dorag\\anaconda3\\Scripts\\conda.exe",
+
+    // ── Jupyter 設定 ────────────────────────────────────────────────
+    "jupyter.kernelPickSuggestRemoteFirst": false,
+    // Python 3.13（ipykernel未インストール）のみ除外。ForMLは表示する
+    "jupyter.kernels.excludePythonEnvironments": [
+      "C:\\Users\\dorag\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+    ],
+    "jupyter.kernels.trusted": [
+      "C:\\Users\\dorag\\anaconda3\\envs\\ForML\\python.exe"
+    ],
+    // カーネル起動タイムアウト（GPU 初期化に時間がかかるため長めに）
+    "jupyter.launchTimeout": 60,
+    // セル出力のスクロール（長い学習ログを見やすく）
+    "jupyter.scrollToRunCursor": true,
+    // 変数ビューアーを有効化（テンソルのshape確認に便利）
+    "jupyter.variableExplorerExclude": "module;function;builtin_function_or_method",
+    // ノートブック実行後にカーソルを次のセルへ移動
+    "notebook.navigateToNextCellAfterRun": true,
+    // セル実行の確認ダイアログを無効化（全セル実行時）
+    "notebook.confirmBeforeClearAll": true,
+    // アウトラインにコードセルの見出し（# %%）を表示
+    "notebook.outline.showCodeCells": true,
+  
+    // ── Python Linting / Formatting ──────────────────────────────────
+    "[python]": {
+      "editor.formatOnSave": false,
+    },
+    // Black フォーマッターの設定（ML コードは行長 100 が読みやすい）
+    "black-formatter.args": ["--line-length", "100"],
+    // isort でインポートを自動整列（torch, tf の順序を統一）
+    "isort.args": ["--profile", "black", "--line-length", "100"],
+  
+    // ── Pylance（型チェック・補完強化）────────────────────────────
+    "python.analysis.typeCheckingMode": "basic",
+    // PyTorch / NumPy の型スタブを有効化
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.completeFunctionParens": true,
+    // GPU テンソルの属性補完を改善
+    "python.analysis.indexing": true,
+  
+    // ── エディター設定 ────────────────────────────────────────────
+    "editor.rulers": [100],   // Black の行長に合わせたガイドライン
+    "editor.renderWhitespace": "boundary",
+    // 大きなテンソルのデバッグ出力が見やすいように
+    "debug.console.fontSize": 13,
+    "debug.console.wordWrap": false,
+  
+    // ── ターミナル設定 ────────────────────────────────────────────
+    // 起動時に自動で conda 環境を有効化
+    "terminal.integrated.shellIntegration.enabled": true,
+    "terminal.integrated.env.linux": {
+      "CONDA_AUTO_ACTIVATE_BASE": "false"
+    },
+    "terminal.integrated.env.windows": {
+      "CONDA_AUTO_ACTIVATE_BASE": "false"
+    },
+    // GPU メモリの断片化を防ぐ（PyTorch 用環境変数）
+    "terminal.integrated.env.osx": {},
+  
+    // ── ファイル設定 ──────────────────────────────────────────────
+    // ML プロジェクトで不要なファイルを非表示（パフォーマンス向上）
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/.ipynb_checkpoints": true,
+      "**/lightning_logs": false,   // 学習ログは表示（後で確認）
+      "**/wandb": false,
+      "**/*.egg-info": true
+    },
+    "search.exclude": {
+      "**/__pycache__": true,
+      "**/.ipynb_checkpoints": true,
+      "**/lightning_logs": true,    // ログは検索対象外
+      "**/wandb": true
+    },
+    "jupyter.interactiveWindow.creationMode": "perFile",
+      "workbench.colorCustomizations": {
+    "notebook.editorBackground":                        "#000000",
+    "notebook.outputContainerBackgroundColor":          "#141414",
+    "notebook.outputContainerBorderColor":              "#dbdbdb1a",
+    "notebook.cellEditorBackground":                    "#0a0a0a",
+    "notebook.cellBorderColor":                         "#dbdbdb18",
+    "notebook.cellHoverBackground":                     "#111111",
+    "notebook.cellToolbarSeparator":                    "#dbdbdb1a",
+    "notebook.inactiveSelectedCellBorder":              "#dbdbdb33",
+    "notebook.inactiveFocusedCellBorder":               "#004CA055",
+    "notebook.selectedCellBorder":                      "#dbdbdb33",
+    "notebook.selectedCellBackground":                  "#004ca014",
+    "notebook.focusedCellBorder": "#C9A333",
+    "notebook.focusedEditorBorder":                     "#004CA0",
+    "notebook.cellInsertionIndicator":                  "#004CA0",
+    "notebook.symbolHighlightBackground":               "#c9a33328",
+    "notebookScrollbarSlider.background":               "#dbdbdb28",
+    "notebookScrollbarSlider.hoverBackground":          "#004CA088",
+    "notebookScrollbarSlider.activeBackground":         "#C9A333",
+    "notebook.cellStatusBarItemHoverBackground":        "#1a1a1a",
+    "notebookStatusRunningIcon.foreground":             "#C9A333",
+    "notebookStatusSuccessIcon.foreground":             "#004CA0",
+    "notebookStatusErrorIcon.foreground":               "#FFFFFF"
+  }
+  }
